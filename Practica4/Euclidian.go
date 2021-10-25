@@ -64,15 +64,21 @@ func main() {
 	fmt.Printf("[i] Tamaño Ingresado: %d\n", nSize)
 	fmt.Println("[+] Ingresa el primer vector :\n[i] Ejemplo: 1,2,3,4")
 
+	// Le dice al sistema bruh quiero un leector
 	in := bufio.NewReader(os.Stdin)
+	// limpia buffer del lector
 	fmt.Scanln(&linea)
+	// le dices al lector bruh lee hasta que te encuentres un retorno de carro
 	line, err := in.ReadString('\r')
-	if err != nil {
+	if err != nil { // si encontraste algun error dime cual
 		log.Fatal(err)
 	}
+	// con lo que leiste separame toda la linea cada , y omite el retorno \r
 	strs := strings.Split(line[0:len(line)-1], ",")
+
+	// creame un vector int64bits de tamaño de lo que leiste
 	vector1 = make([]int64, len(strs))
-	for i, str := range strs {
+	for i, str := range strs { // convierteme todo a enteros plox
 		if vector1[i], _ = strconv.ParseInt(str, 0, 32); err != nil {
 			log.Fatal(err)
 		}
