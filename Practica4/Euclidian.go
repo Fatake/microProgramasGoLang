@@ -52,7 +52,7 @@ func main() {
 	var linea string
 	nSize := 0
 	fmt.Println("Calculo de Distancia Euclidiana entre 2 vectores")
-	fmt.Println("<-------------------------->")
+	fmt.Print("<---------------------------------------------->\n\n")
 	for {
 		fmt.Print("[+] Ingresa tamaño de los vectores:\n")
 		fmt.Scanf("%d", &nSize)
