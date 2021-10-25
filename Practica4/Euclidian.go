@@ -15,25 +15,25 @@ import (
 var clear map[string]func()
 
 func init() {
-	clear = make(map[string]func()) //Initialize it
+	clear = make(map[string]func())
 	clear["linux"] = func() {
-		cmd := exec.Command("clear") //Linux example, its tested
+		cmd := exec.Command("clear")
 		cmd.Stdout = os.Stdout
 		cmd.Run()
 	}
 	clear["windows"] = func() {
-		cmd := exec.Command("cmd", "/c", "cls") //Windows example, its tested
+		cmd := exec.Command("cmd", "/c", "cls")
 		cmd.Stdout = os.Stdout
 		cmd.Run()
 	}
 }
 
 func CleanScreen() {
-	value, ok := clear[runtime.GOOS] //runtime.GOOS -> linux, windows, darwin etc.
-	if ok {                          //if we defined a clear func for that platform:
-		value() //we execute it
-	} else { //unsupported platform
-		panic("Your platform is unsupported! I can't clear terminal screen :(")
+	value, ok := clear[runtime.GOOS]
+	if ok {
+		value()
+	} else {
+		panic("[!] No puedo limpiar la pantalla en: " + runtime.GOOS)
 	}
 }
 
@@ -43,7 +43,6 @@ func discanciaEuclidiana(vector1, vector2 []int64) float64 {
 		aux := float64(vector1[i] - vector2[i])
 		temp += math.Pow(aux, 2)
 	}
-
 	return math.Sqrt(temp)
 }
 
@@ -80,8 +79,7 @@ func main() {
 	}
 
 	fmt.Println("[i] Vector1: ", vector1)
-	fmt.Scanln(&linea)
-	fmt.Println("[+] Ingrese Segundo vector")
+	fmt.Println("[+] Ingrese Segundo vector:")
 	in2 := bufio.NewReader(os.Stdin)
 	line2, err := in2.ReadString('/')
 	if err != nil {
