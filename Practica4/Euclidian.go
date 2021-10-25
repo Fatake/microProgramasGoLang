@@ -62,11 +62,11 @@ func main() {
 		CleanScreen()
 	}
 	fmt.Printf("[i] Tamaño Ingresado: %d\n", nSize)
-	fmt.Println("[+] Ingresa el primer vector (Al finalizar pon un / y enter):\n[i] Ejemplo: 1,2,3,4/")
+	fmt.Println("[+] Ingresa el primer vector :\n[i] Ejemplo: 1,2,3,4")
 
 	in := bufio.NewReader(os.Stdin)
 	fmt.Scanln(&linea)
-	line, err := in.ReadString('/')
+	line, err := in.ReadString('\r')
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -80,21 +80,18 @@ func main() {
 
 	fmt.Println("[i] Vector1: ", vector1)
 	fmt.Println("[+] Ingrese Segundo vector:")
-	in2 := bufio.NewReader(os.Stdin)
-	line2, err := in2.ReadString('/')
+	line, err = in.ReadString('\r')
 	if err != nil {
 		log.Fatal(err)
 	}
-	strs2 := strings.Split(line2[0:len(line2)-1], ",")
-	vector2 = make([]int64, len(strs2))
-	for i, str := range strs2 {
+	strs = strings.Split(line[0:len(line)-1], ",")
+	vector2 = make([]int64, len(strs))
+	for i, str := range strs {
 		if vector2[i], _ = strconv.ParseInt(str, 0, 32); err != nil {
 			log.Fatal(err)
 		}
 	}
 
 	fmt.Println("[i] Vector2: ", vector2)
-
 	fmt.Println("[+] La Distancia euclidiana es: ", discanciaEuclidiana(vector1, vector2))
-
 }
